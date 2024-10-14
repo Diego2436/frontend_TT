@@ -8,8 +8,10 @@ const Documentation = () => {
     
 
     return (
+        <>
         <h1>Documentación</h1>
-
+        <h1>DocumentaciónPrueba</h1>
+        </>
     );
 };
 
