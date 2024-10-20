@@ -15,7 +15,7 @@ const Login = () => {
         setError(null);
 
         try {
-            const response = await axios.post('https://irontigersmart.com:444/api/authentication/iniciar-sesion/', {
+            const response = await axios.post('http://127.0.0.1:8000/api/authentication/login/', {
                 email,
                 password,
             });
