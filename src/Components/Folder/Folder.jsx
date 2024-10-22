@@ -7,7 +7,7 @@ const Folder = ({ name, files, taskId }) => {
 
     // Función para manejar el clic en el folder
     const handleFolderClick = () => {
-        navigate(`/folder/${taskId}`);  // Navegar a la página con el ID de la tarea
+        navigate(`/archivosActividades/${taskId}`);  // Navegar a la página con el ID de la tarea
     };
 
     return (
