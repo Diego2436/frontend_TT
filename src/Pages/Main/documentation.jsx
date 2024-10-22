@@ -1,49 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Folder from '../../Components/Folder/Folder';
-import axios from 'axios';
 
 const Documentation = () => {
-    const [folders, setFolders] = useState([]);
-
-    useEffect(() => {
-        const fetchFiles = async () => {
-            try {
-                const token = localStorage.getItem('token');
-
-                const response = await axios.get('http://127.0.0.1:8000/api/files/activities/all/', {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-
-                const tasksData = response.data.tasks;
-
-                const formattedFolders = tasksData.map(task => ({
-                    name: `Task ID: ${task.task_id}`,
-                    files: task.pdf.length > 0 ? task.pdf : [],
-                    taskId: task.task_id 
-                }));
-
-                setFolders(formattedFolders);
-            } catch (error) {
-                console.error('Error fetching files:', error);
-            }
-        };
-
-        fetchFiles();
-    }, []);
-
     return (
         <div className="container mt-5">
-            <h1>My Activities</h1>
-            {folders.length > 0 ? (
-                folders.map((folder, index) => (
-                    <Folder key={index} name={folder.name} files={folder.files} taskId={folder.taskId} />
-                ))
-            ) : (
-                <p>No hay actividades</p>
-            )}
+            <h1>Documentación</h1>
+            <div className="mt-4">
+                <a 
+                    href="https://www.ipn.mx/seacademica/comisionescomites/edd/"
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="btn btn-primary ms-2" 
+                >
+                    Información para la beca EDD
+                </a>
+                
+                <a 
+                    href="https://www.ipn.mx/investigacion/estimulos/edi/"
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="btn btn-primary ms-2" 
+                >
+                    Información para la beca EDI
+                </a>
+                
+                <a 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="btn btn-danger ms-2" 
+                >
+                    Descargar manual de usuario
+                </a>
+            </div>
         </div>
     );
 };

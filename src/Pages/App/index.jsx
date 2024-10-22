@@ -13,6 +13,7 @@ import EDI from '../Main/edi';
 import Profile from '../Main/profile';
 import Archives from '../Main/archives'
 import Documentation from '../Main/documentation';
+import ArchivesActivities from '../Main/archivesActivities'
 
 
 const App = () => {
@@ -33,6 +34,8 @@ const App = () => {
                 <Route path="/perfil" element={<Profile />}></Route>
                 <Route path="/archivos" element={<Archives />}></Route>
                 <Route path="/documentacion" element={<Documentation />}></Route>
+
+                <Route path="/archivosActividades/:taskID" element={<ArchivesActivities />}></Route>
             </Routes>
         </BrowserRouter>
         </>
