@@ -36,7 +36,7 @@ const Archives = () => {
 
     return (
         <div className="container mt-5">
-            <h1>Mi actividades</h1>
+            <h1>Mis actividades</h1>
             {folders.length > 0 ? (
                 folders.map((folder, index) => (
                     <Folder key={index} name={folder.name} files={folder.files} taskId={folder.taskId} />
