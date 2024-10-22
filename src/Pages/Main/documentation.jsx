@@ -10,7 +10,7 @@ const Documentation = () => {
                     href="https://www.ipn.mx/seacademica/comisionescomites/edd/"
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="btn btn-primary" 
+                    className="btn btn-primary ms-2" 
                 >
                     Información para la beca EDD
                 </a>
@@ -19,7 +19,7 @@ const Documentation = () => {
                     href="https://www.ipn.mx/investigacion/estimulos/edi/"
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="btn btn-secondary ms-2" 
+                    className="btn btn-primary ms-2" 
                 >
                     Información para la beca EDI
                 </a>
@@ -27,7 +27,7 @@ const Documentation = () => {
                 <a 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="btn btn-secondary ms-2" 
+                    class="btn btn-danger ms-2" 
                 >
                     Descargar manual de usuario
                 </a>
