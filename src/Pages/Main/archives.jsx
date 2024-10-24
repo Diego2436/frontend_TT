@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Folder from '../../Components/Folder/Folder';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Archives = () => {
     const [folders, setFolders] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchFiles = async () => {
@@ -34,12 +36,23 @@ const Archives = () => {
         fetchFiles();
     }, []);
 
+    // Función para manejar el clic y redirigir a la página de la actividad
+    const handleFolderClick = (taskId) => {
+        navigate(`/archivosActividades/${taskId}`);
+    };
+
     return (
         <div className="container mt-5">
             <h1>Mis actividades</h1>
             {folders.length > 0 ? (
                 folders.map((folder, index) => (
-                    <Folder key={index} name={folder.name} files={folder.files} taskId={folder.taskId} />
+                    <div
+                        key={index}
+                        onClick={() => handleFolderClick(folder.taskId)}  // <-- Aquí manejamos el clic
+                        style={{ cursor: 'pointer' }}
+                    >
+                        <Folder name={folder.name} files={folder.files} taskId={folder.taskId} />
+                    </div>
                 ))
             ) : (
                 <p>No hay actividades</p>
