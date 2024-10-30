@@ -1,0 +1,134 @@
+/* MyCalendar.css */
+
+/* Estilos generales del calendario */
+.custom-calendar {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Header del calendario */
+.react-calendar__navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007bff;
+    /* Fondo azul */
+    color: #fff;
+    /* Texto blanco */
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.react-calendar__navigation button {
+    background: none;
+    border: none;
+    color: #fff;
+    /* Flechas en blanco */
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.react-calendar__navigation button:hover {
+    color: #e3f2fd;
+    /* Flechas en azul claro al pasar el cursor */
+}
+
+/* Mes y año en el header */
+.react-calendar__navigation__label {
+    font-weight: bold;
+    color: #fff;
+    /* Mes y año en blanco */
+}
+
+/* Asegurarse que los días se vean correctamente */
+.react-calendar__tile {
+    color: #333;
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+/* Sombra para la fecha seleccionada */
+.react-calendar__tile--active {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+.react-calendar__tile:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Fines de semana */
+.react-calendar__month-view__days__day--weekend {
+    color: #f44336;
+}
+
+/* Fechas con títulos */
+.highlight-date {
+    background-color: #b0bec5 !important;
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    margin: auto;
+}
+
+/* Estilo del input de fecha */
+input[type="date"],
+select {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+/* Botones */
+button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+
+.kanban-column {
+    transition: box-shadow 0.3s ease;
+}
+
+.kanban-column:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Ajuste de tamaño personalizado para las imágenes */
+.img-fluid {
+    width: 110px;
+    /* Cambia el valor según tus necesidades */
+    height: 110px;
+    /* Cambia el valor según tus necesidades */
+    object-fit: cover;
+    /* Asegura que la imagen mantenga la proporción y rellene el contenedor */
+    border-radius: 8px;
+    /* Opcional: añadir bordes redondeados */
+}

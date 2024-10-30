@@ -76,6 +76,17 @@ const Login = () => {
                     </button>
                 </form>
                 {error && <p>{error}</p>}
+
+                <div className="text-center mt-3">
+                    <p>¿No estás registrado?</p>
+                    <button
+                        className="btn btn-link"
+                        onClick={() => navigate('/signup')}
+                    >
+                        Ingresa aquí
+                    </button>
+                </div>
+                
             </div>
         </div>
     );    

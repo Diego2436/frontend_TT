@@ -5,8 +5,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';  // Asegúrate de tener Bootstrap
 
 const ArchivesActivities = () => {
     const { taskID } = useParams();  // Extrae el taskID desde la URL
-    const [files, setFiles] = useState([]);     // Estado para almacenar los archivos
-    const [loading, setLoading] = useState(true); // Estado de carga
+    const [files, setFiles] = useState([]);     
+    const [loading, setLoading] = useState(true);
+    const [fileSelected, setFileSelected] = useState(false);
 
     // Función para obtener los archivos por task_id
     useEffect(() => {
@@ -66,6 +67,48 @@ const ArchivesActivities = () => {
         }
     };
 
+    // Función para manejar la carga de archivos
+    const handleUpload = async (event) => {
+        const file = event.target.files[0];
+    
+        // Si ya se ha seleccionado un archivo, no hacemos nada
+        if (!file || fileSelected) {
+            return;
+        }
+    
+        // Verificamos que el archivo sea un PDF
+        if (!file.name.endsWith('.pdf')) {
+            alert('Por favor, selecciona un archivo PDF.');
+            return;
+        }
+    
+        setFileSelected(true);  // Indica que un archivo ha sido seleccionado
+    
+        try {
+            const token = localStorage.getItem('token');
+            const formData = new FormData();
+            formData.append('file', file);
+    
+            const response = await axios.post(`http://127.0.0.1:8000/api/upload_pdf/${taskID}/`, formData, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+    
+            // Actualiza el estado con el nuevo archivo subido
+            setFiles([...files, response.data.file]);
+            alert('Archivo subido correctamente.');
+        } catch (error) {
+            console.error('Error uploading file:', error);
+            alert('Hubo un error al subir el archivo.');
+        } finally {
+            // Reiniciar el input después de la carga
+            event.target.value = null;  // Reiniciar el valor del input
+            setFileSelected(false);  // Permitir seleccionar un nuevo archivo
+        }
+    };    
+    
     if (loading) {
         return <p>Cargando archivos...</p>;
     }
@@ -105,6 +148,23 @@ const ArchivesActivities = () => {
                     <p>No hay archivos para esta actividad.</p>
                 )}
             </div>
+
+            <div className="fixed-bottom mb-4 me-4 d-flex justify-content-end">
+                <input 
+                    type="file" 
+                    accept=".pdf" 
+                    onChange={handleUpload}  // Maneja la carga directamente aquí
+                    style={{ display: 'none' }} 
+                    id="file-upload" 
+                />
+                <label 
+                    htmlFor="file-upload" 
+                    className="btn btn-success me-2" 
+                >
+                    <span className="material-symbols-outlined">add</span> {/* Icono "+" */}
+                </label>
+            </div>
+
         </div>
     );
 };
