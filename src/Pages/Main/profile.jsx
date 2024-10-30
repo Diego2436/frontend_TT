@@ -12,7 +12,7 @@ const Profile = () => {
         const fetchUserProfile = async () => {
             const token = localStorage.getItem('token'); // Obtener el token guardado
             if (!token) {
-                navigate('/login'); // Redirigir si no hay token
+                navigate('/'); // Redirigir si no hay token
                 return;
             }
 
@@ -38,7 +38,7 @@ const Profile = () => {
     const handleRecoverPassword = async () => {
         const token = localStorage.getItem('token'); // Obtener el token guardado
         if (!token) {
-            navigate('/login'); // Redirigir si no hay token
+            navigate('/'); // Redirigir si no hay token
             return;
         }
 
@@ -64,7 +64,7 @@ const Profile = () => {
     const handleLogout = () => {
         localStorage.removeItem("token");
         sessionStorage.removeItem("token");
-        navigate("/login"); // Redirigir al login
+        navigate("/"); // Redirigir al login
         window.location.reload(); // Recargar la página
     };
 

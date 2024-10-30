@@ -1,7 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Documentation = () => {
+
+    const navigate = useNavigate();
+
     return (
         <div className="container mt-5">
             <h1>Documentación</h1>
@@ -31,6 +35,16 @@ const Documentation = () => {
                 >
                     Descargar manual de usuario
                 </a>
+
+                <a 
+                    onClick={() => navigate('/landing')}
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="btn btn-primary ms-2" 
+                >
+                    ¿Aun tienes dudas acerca del sistema?
+                </a>
+
             </div>
         </div>
     );

@@ -26,13 +26,19 @@ const Register = () => {
 
             console.log('data:', response.data);
             // Suponiendo que después de registrar, deseas redirigir a otra página
-            navigate('/login'); // Cambia la ruta a donde quieras redirigir después de registrar
+            navigate('/'); // Cambia la ruta a donde quieras redirigir después de registrar
             window.location.reload();
 
         } catch (err) {
-            if (err.response) {
-                // Manejo de errores más específico
-                setError(err.response.data.detail || 'Registro fallido. Verifica tus datos.');
+            if (err.response && err.response.data) {
+                // Verificar el mensaje de error específico desde el backend
+                const errorMsg = err.response.data.error;
+                
+                if (errorMsg) {
+                    setError(errorMsg); // Mostrar el mensaje específico del backend
+                } else {
+                    setError('Registro fallido. Verifica tus datos.');
+                }
             } else {
                 setError('Ocurrió un error inesperado.');
             }

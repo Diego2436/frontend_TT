@@ -6,15 +6,8 @@ import moduleImage from '../../Images/DiagramaBloquesModulo.png'
 import sistemImage from '../../Images/DiagramaBloquesSistema.png'
 
 const Landing = () => {
+
     const navigate = useNavigate();
-
-    const handleLoginClick = () => {
-        navigate('/login');
-    };
-
-    const handleSignupClick = () => {
-        navigate('/signup');
-    };
 
     const ocrInfo = [
         "“Optical Character Recognition” o en resumen, OCR, es una herramienta que permite digitalizar textos.",
@@ -36,47 +29,9 @@ const Landing = () => {
 
     return (
         <>
-            <header className="navbar navbar-expand-lg navbar-dark bg-dark" role="banner">
-                <div className="container-fluid">
-                    <Link to="/" className="navbar-brand d-flex align-items-center">
-                        <span className="fw-bold">TT 2024-B079</span>
-                    </Link>
-
-                    <button
-                        className="navbar-toggler"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
-                    >
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
-                                <button
-                                    className="nav-link d-flex align-items-center text-white bg-transparent border-0"
-                                    onClick={handleLoginClick}
-                                >
-                                    <span className="ms-2 fw-semibold">Iniciar Sesión</span>
-                                </button>
-                            </li>
-                            <li className="nav-item">
-                                <button
-                                    className="nav-link d-flex align-items-center text-white bg-transparent border-0"
-                                    onClick={handleSignupClick}
-                                >
-                                    <span className="ms-2 fw-semibold">Registrarse</span>
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </header>
-            <h1>Descripcion del sistema</h1>
+            <div className="container">
+                <h1 className="text-center">Descripción del sistema</h1>
+            </div>
             <main className="container-fluid vh-100 d-flex flex-wrap">
                 <div className="col-6 col-md-8 d-flex flex-column justify-content-center align-items-center text-white text-center">
                     <h2 className="text-primary text-center">¿Qué es OCR?</h2>
