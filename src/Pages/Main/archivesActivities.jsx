@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import 'bootstrap/dist/css/bootstrap.min.css';  // Asegúrate de tener Bootstrap importado
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ArchivesActivities = () => {
-    const { taskID } = useParams();  // Extrae el taskID desde la URL
+    const { taskID } = useParams(); 
     const [files, setFiles] = useState([]);     
     const [loading, setLoading] = useState(true);
     const [fileSelected, setFileSelected] = useState(false);
+    const [dueDate, setDueDate] = useState("");
+    const [nombreActividad, setNombreActividad] = useState("");
 
     // Función para obtener los archivos por task_id
     useEffect(() => {
@@ -20,7 +22,9 @@ const ArchivesActivities = () => {
                     }
                 });
 
-                setFiles(response.data.files);  // Actualizamos los archivos en el estado
+                setFiles(response.data.files);
+                setDueDate(response.data.due_date);
+                setNombreActividad(response.data.actividad_beca.nombre_actividad);
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching files:', error);
@@ -115,7 +119,7 @@ const ArchivesActivities = () => {
 
     return (
         <div className="container mt-5">
-            <h1>Archivos de la Actividad {taskID}</h1>
+            <h2>Archivos de la Actividad: {dueDate} - {nombreActividad}</h2>
             <div className="row">
                 {files.length > 0 ? (
                     files.map(file => (
@@ -161,7 +165,7 @@ const ArchivesActivities = () => {
                     htmlFor="file-upload" 
                     className="btn btn-success me-2" 
                 >
-                    <span className="material-symbols-outlined">add</span> {/* Icono "+" */}
+                    <span className="material-symbols-outlined">add</span>
                 </label>
             </div>
 

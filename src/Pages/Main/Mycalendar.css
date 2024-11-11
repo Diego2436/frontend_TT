@@ -132,3 +132,60 @@ button:hover {
     border-radius: 8px;
     /* Opcional: añadir bordes redondeados */
 }
+
+.gris {
+    background-color: gray !important;
+}
+
+.verde {
+    background-color: green !important;
+}
+
+.rojo {
+    background-color: red !important;
+}
+
+.amarillo {
+    background-color: yellow !important;
+}
+
+.kanban-column {
+    flex: 1 1 23%;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.kanban-column h4 {
+    margin-bottom: 10px;
+}
+
+.kanban-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.kanban-column ul li {
+    margin-bottom: 10px;
+}
+
+.kanban-column.actividades {
+    background-color: #f9f9f9;
+}
+
+.kanban-column.errores {
+    background-color: #f8d7da;
+    /* Rojo claro */
+}
+
+.kanban-column.correciones {
+    background-color: #fff3cd;
+    /* Amarillo claro */
+}
+
+.kanban-column.finalizadas {
+    background-color: #d4edda;
+    /* Verde claro */
+}

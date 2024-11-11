@@ -77,16 +77,27 @@ const Login = () => {
                 </form>
                 {error && <p>{error}</p>}
 
-                <div className="text-center mt-3">
-                    <p>¿No estás registrado?</p>
+                <div className="text-center mt-4">
+                    <p className="mb-1">¿No estás registrado?</p>
                     <button
-                        className="btn btn-link"
+                        className="btn btn-outline-primary btn-sm mb-3"
                         onClick={() => navigate('/signup')}
+                        style={{ textDecoration: 'none', fontWeight: 'bold' }}
                     >
                         Ingresa aquí
                     </button>
                 </div>
-                
+
+                <div className="text-center mt-4">
+                    <p className="mb-1">¿Olvidaste tu contraseña?</p>
+                    <button
+                        className="btn btn-outline-secondary btn-sm"
+                        onClick={() => navigate('/recoverPassword')}
+                        style={{ textDecoration: 'none', fontWeight: 'bold' }}
+                    >
+                        Recuperar contraseña
+                    </button>
+                </div>
             </div>
         </div>
     );    
