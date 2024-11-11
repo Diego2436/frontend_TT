@@ -22,7 +22,7 @@ const Archives = () => {
                 const tasksData = response.data.tasks;
 
                 const formattedFolders = tasksData.map(task => ({
-                    name: `Task ID: ${task.task_id}`,
+                    name: `${task.due_date} - ${task.actividad_beca.nombre_beca} - ${task.actividad_beca.nombre_actividad}`,
                     files: task.pdf.length > 0 ? task.pdf : [],
                     taskId: task.task_id 
                 }));
@@ -48,7 +48,7 @@ const Archives = () => {
                 folders.map((folder, index) => (
                     <div
                         key={index}
-                        onClick={() => handleFolderClick(folder.taskId)}  // <-- Aquí manejamos el clic
+                        onClick={() => handleFolderClick(folder.taskId)}
                         style={{ cursor: 'pointer' }}
                     >
                         <Folder name={folder.name} files={folder.files} taskId={folder.taskId} />
