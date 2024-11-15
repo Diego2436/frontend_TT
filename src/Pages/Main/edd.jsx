@@ -29,9 +29,16 @@ const EDD = () => {
         })
         .then(response => response.json())
         .then(data => {
-            setTitles(data); // Actualizamos el estado con las actividades
+            if (data.message) {
+                // Si hay un mensaje, actualiza el estado del error
+                setError(data.message);
+                setTitles([]); // Asegúrate de que el array de títulos esté vacío
+            } else {
+                setTitles(data); // Actualiza el estado con las actividades si existen
+                setError(""); // Limpia el mensaje de error si la solicitud fue exitosa
+            }
         })
-        .catch(error => console.error("Error al cargar las actividades:", error));
+        .catch(error => setError("Error al cargar las actividades"));
     }, []);
     
 
@@ -68,7 +75,7 @@ const EDD = () => {
                 case 'errores':
                     tileClass = 'rojo';
                     break;
-                case 'precaución':
+                case 'precaucion':
                     tileClass = 'amarillo';
                     break;
                 default:
@@ -118,7 +125,7 @@ const EDD = () => {
             .filter(activity => activity.estado === 'errores')
             .sort((a, b) => new Date(convertToSortableDate(a.fecha_vencimiento)) - new Date(convertToSortableDate(b.fecha_vencimiento))),
         correciones: titles
-            .filter(activity => activity.estado === 'precaución')
+            .filter(activity => activity.estado === 'precaucion')
             .sort((a, b) => new Date(convertToSortableDate(a.fecha_vencimiento)) - new Date(convertToSortableDate(b.fecha_vencimiento))),
         finalizadas: titles
             .filter(activity => activity.estado === 'completada')

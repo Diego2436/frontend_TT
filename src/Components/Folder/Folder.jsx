@@ -11,12 +11,12 @@ const Folder = ({ name, files, taskId }) => {
     };
 
     return (
-        <div className="card mb-3" onClick={handleFolderClick} style={{ cursor: 'pointer' }}> {/* Añadir el evento de clic */}
+        <div className="card mb-3" onClick={handleFolderClick} style={{ cursor: 'pointer' }}>
             <div className="card-body">
                 <h5 className="card-title">
                     <i className="bi bi-folder-fill"></i> {name}
                 </h5>
-                <p className="card-text">
+                <div className="card-text"> {/* Reemplazado <p> por <div> */}
                     {files.length > 0 ? (
                         <div>
                             {files.map((file, index) => (
@@ -26,9 +26,9 @@ const Folder = ({ name, files, taskId }) => {
                             ))}
                         </div>
                     ) : (
-                        <p className="text-muted">La actividad no tiene ningun documento.</p> 
+                        <span className="text-muted">La actividad no tiene ningun documento.</span>
                     )}
-                </p>
+                </div>
             </div>
         </div>
     );

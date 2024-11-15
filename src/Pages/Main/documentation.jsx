@@ -14,7 +14,7 @@ const Documentation = () => {
                     href="https://www.ipn.mx/seacademica/comisionescomites/edd/"
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="btn btn-primary ms-2" 
+                    className="btn btn-primary ms-2 mb-3"  // Agregado mb-3 para margen inferior
                 >
                     Información para la beca EDD
                 </a>
@@ -23,7 +23,7 @@ const Documentation = () => {
                     href="https://www.ipn.mx/investigacion/estimulos/edi/"
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="btn btn-primary ms-2" 
+                    className="btn btn-primary ms-2 mb-3"  // Agregado mb-3 para margen inferior
                 >
                     Información para la beca EDI
                 </a>
@@ -31,7 +31,7 @@ const Documentation = () => {
                 <a 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    class="btn btn-danger ms-2" 
+                    className="btn btn-danger ms-2 mb-3"  // Agregado mb-3 para margen inferior
                 >
                     Descargar manual de usuario
                 </a>
@@ -40,7 +40,7 @@ const Documentation = () => {
                     onClick={() => navigate('/landing')}
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="btn btn-primary ms-2" 
+                    className="btn btn-primary ms-2 mb-3"  // Agregado mb-3 para margen inferior
                 >
                     ¿Aun tienes dudas acerca del sistema?
                 </a>

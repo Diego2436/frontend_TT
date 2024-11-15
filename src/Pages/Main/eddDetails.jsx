@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const EddDetails = () => {
+
+    const navigate = useNavigate();
+
     const { taskID } = useParams();
     const token = localStorage.getItem('token');
     const [activity, setActivity] = useState(null);
@@ -89,7 +93,6 @@ const EddDetails = () => {
             );
             // Mostrar mensaje de éxito o redirigir
             alert("Tarea actualizada con éxito");
-            console.log("Respuesta del servidor:", response.data);
         } catch (error) {
             console.error("Error al guardar los cambios:", error);
             alert("Hubo un error al guardar los cambios. Intenta nuevamente.");
@@ -191,6 +194,23 @@ const EddDetails = () => {
         }
     };
 
+    const handleTaskDelete = async () => {
+        try {
+            await axios.delete(`http://127.0.0.1:8000/api/user/tasks/${taskID}/delete`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+    
+            // Mensaje de éxito y redirección
+            alert("Actividad eliminada con éxito");
+            navigate("/edd"); // Redirige a la página deseada
+        } catch (error) {
+            console.error("Error al eliminar la actividad:", error);
+            alert("Hubo un error al eliminar la actividad. Intenta nuevamente.");
+        }
+    };    
+
     // Actualiza las opciones filtradas cuando cambia el texto de filtro
     useEffect(() => {
         // Filtra las opciones que empiezan con el texto del filtro
@@ -280,6 +300,7 @@ const EddDetails = () => {
                             className="form-control"
                             value={points}
                             onChange={(e) => setPoints(e.target.value)}
+                            min="0"
                         />
                     </div>
                 </div>
@@ -319,6 +340,12 @@ const EddDetails = () => {
                 </div>
             </form>
 
+            <div className="d-flex justify-content-center my-4">
+                <button className="btn btn-danger me-2" onClick={handleTaskDelete}>
+                    Eliminar
+                </button>
+            </div>
+
             <hr />
             
             {/* Sección de Gestión de Archivos */}
@@ -338,6 +365,7 @@ const EddDetails = () => {
                                     </button>
                                     <button
                                         className="btn btn-primary w-100 mb-3"
+                                        onClick={() => navigate(`/verificacion/${file.id}`)}
                                     >
                                         Verificar archivo
                                     </button>

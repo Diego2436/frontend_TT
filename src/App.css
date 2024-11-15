@@ -14065,3 +14065,22 @@ fieldset:disabled .btn {
     display: none !important;
   }
 }
+
+.form-select {
+  width: 100% !important;
+  max-width: 100% !important;
+  white-space: normal !important;
+  overflow: hidden;
+}
+
+@media (max-width: 576px) {
+  .form-select {
+    padding-right: 5px;
+  }
+}
+
+select.form-select option {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
