@@ -55,6 +55,12 @@ const Navbar = () => {
                                         </Link>
                                     </li>
                                     <li>
+                                        <Link className="dropdown-item" to="/comentarios">
+                                            <span className="material-symbols-rounded me-2">forum</span>
+                                            Comentarios
+                                        </Link>
+                                    </li>
+                                    <li>
                                         <button className="dropdown-item" onClick={handleLogout}>
                                             <span className="material-symbols-rounded me-2">logout</span>
                                             Cerrar sesión

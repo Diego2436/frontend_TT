@@ -87,7 +87,6 @@ function EdiCreate({ onClose, setTitles }) {
             }
             
             const data = await response.json();
-            console.log("Actividad creada:", data);
             setTitles(prevTitles => [...prevTitles, data]);
             onClose();
         } catch (error) {
@@ -198,6 +197,7 @@ function EdiCreate({ onClose, setTitles }) {
                         onChange={handleChange}
                         className="form-control"
                         required
+                        min="0"
                     />
                 </div>
     
