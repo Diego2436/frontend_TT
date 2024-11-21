@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ArchivesActivities = () => {
+    const navigate = useNavigate();
     const { taskID } = useParams(); 
     const [files, setFiles] = useState([]);     
     const [loading, setLoading] = useState(true);
@@ -16,7 +17,7 @@ const ArchivesActivities = () => {
         const fetchFiles = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get(`http://127.0.0.1:8000/api/files/${taskID}/`, {
+                const response = await axios.get(`http://127.0.0.1:8000/api/filesEstado/${taskID}/`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -111,6 +112,24 @@ const ArchivesActivities = () => {
             event.target.value = null;  // Reiniciar el valor del input
             setFileSelected(false);  // Permitir seleccionar un nuevo archivo
         }
+    }; 
+    
+    const getStatusColor = (status) => {
+        switch (status) {
+            case "completada": return "text-success"; // Verde
+            case "errores": return "text-danger";     // Rojo
+            case "precaucion": return "text-warning"; // Amarillo
+            default: return "text-secondary";        // Gris para null u otros
+        }
+    };
+    
+    const getStatusText = (status) => {
+        switch (status) {
+            case "completada": return "Completa";
+            case "errores": return "Contiene Errores";
+            case "precaucion": return "Correcciones";
+            default: return "Sin estado";
+        }
     };    
     
     if (loading) {
@@ -128,11 +147,21 @@ const ArchivesActivities = () => {
                                 <div className="card-body">
                                     {/* Espacio debajo del nombre del archivo */}
                                     <h5 className="card-title mb-3">{file.name}</h5>
+                                    <p className={`mb-3 ${getStatusColor(file.file_status)}`}>
+                                        {getStatusText(file.file_status)}
+                                    </p>
                                     <button
                                         className="btn btn-primary w-100 mb-3"
                                         onClick={() => handleView(file.id)}
                                     >
                                         Descargar archivo
+                                    </button>
+
+                                    <button
+                                        className="btn btn-primary w-100 mb-3"
+                                        onClick={() => navigate(`/verificacion/${file.id}`)}
+                                    >
+                                        Verificar archivo
                                     </button>
                                 </div>
 

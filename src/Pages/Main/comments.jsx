@@ -24,8 +24,6 @@ const Comments = () => {
         fetchComments();
     }, []);
 
-    
-
     const handleCommentChange = (e) => {
         setComment(e.target.value);
     };
