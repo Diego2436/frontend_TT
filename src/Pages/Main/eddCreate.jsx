@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Select from "react-select";
 
 function EddCreate({ onClose, setTitles }) {
     const token = localStorage.getItem("token");
@@ -44,10 +45,10 @@ function EddCreate({ onClose, setTitles }) {
         setFilteredOptions(newFilteredOptions);
     };
 
-    const handleActividadChange = (e) => {
+    const handleOptionChange = (selectedOption) => {
         setActividad({
             ...actividad,
-            actividad_id: e.target.value
+            actividad_id: selectedOption.value,
         });
     };
 
@@ -136,23 +137,25 @@ function EddCreate({ onClose, setTitles }) {
                         />
                     </div>
     
-                    <div className="col-md-6">
+                    {/* Menú de selección con React-Select */}
+                    <div className="col-md-12">
                         <label htmlFor="actividad" className="form-label text-secondary">Actividad:</label>
-                        <select
-                            id="actividad"
-                            name="actividad_id"
-                            value={actividad.actividad_id}
-                            onChange={handleActividadChange}
-                            className="form-select"
-                            required
-                        >
-                            <option value="" disabled>Seleccione una actividad</option>
-                            {filteredOptions.map((option) => (
-                                <option key={option.ID} value={option.ID}>
-                                    {option.Codigo} - {option.Nombre}
-                                </option>
-                            ))}
-                        </select>
+                        <Select
+                            options={filteredOptions.map((option) => ({
+                                value: option.ID,
+                                label: `${option.Codigo} - ${option.Nombre}`,
+                            }))}
+                            onChange={handleOptionChange}
+                            placeholder="Seleccione una actividad"
+                            styles={{
+                                menu: (provided) => ({ ...provided, zIndex: 999 }), // Asegura que el menú no se corte
+                                option: (provided) => ({
+                                    ...provided,
+                                    whiteSpace: "normal",
+                                    wordBreak: "break-word",
+                                }),
+                            }}
+                        />
                     </div>
                 </div>
     

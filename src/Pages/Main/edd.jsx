@@ -7,9 +7,7 @@ import './MyCalendar.css';
 import EddCreate from './eddCreate'; 
 
 const EDD = () => {
-
     const navigate = useNavigate();
-
     const [selectedOption, setSelectedOption] = useState('kanban');
     const [titles, setTitles] = useState([]); 
     const [date, setDate] = useState(new Date()); 
@@ -41,7 +39,6 @@ const EDD = () => {
         .catch(error => setError("Error al cargar las actividades"));
     }, []);
     
-
     const handleOptionClick = (option) => {
         setSelectedOption(option);
     };

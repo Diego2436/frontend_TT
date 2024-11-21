@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Select from 'react-select';
 
 const EdiDetails = () => {
-
     const navigate = useNavigate();
-
     const { taskID } = useParams();
     const token = localStorage.getItem('token');
     const [activity, setActivity] = useState(null);
@@ -19,7 +17,6 @@ const EdiDetails = () => {
     const [files, setFiles] = useState([]);
     const [loading, setLoading] = useState(true);
     const [fileSelected, setFileSelected] = useState(false);
-
     const [filterText, setFilterText] = useState("");
     const [filteredOptions, setFilteredOptions] = useState(activityOptions);
 
@@ -260,6 +257,16 @@ const EdiDetails = () => {
 
     const { min, max } = getDateLimits();
 
+    const handleSelectChange = (selectedOption) => {
+        setSelectedActivityId(selectedOption ? selectedOption.value : null);
+    };
+
+    // Formatear las opciones para react-select
+    const options = filteredOptions.map(option => ({
+        value: option.ID,
+        label: `${option.Codigo} - ${option.Nombre}`,
+    }));
+
     if (loading) {
         return <p>Cargando archivos...</p>;
     }
@@ -318,18 +325,13 @@ const EdiDetails = () => {
 
                     <div className="col-12 col-md-4">
                         <label>Seleccionar Actividad</label>
-                        <select
-                            className="form-select"
-                            value={selectedActivityId}
-                            onChange={(e) => setSelectedActivityId(e.target.value)}
-                        >
-                            <option value="">Seleccionar</option>
-                            {filteredOptions.map((option) => (
-                                <option key={option.ID} value={option.ID}>
-                                    {option.Codigo} - {option.Nombre}
-                                </option>
-                            ))}
-                        </select>
+                        <Select
+                            value={options.find(option => option.value === selectedActivityId)}
+                            onChange={handleSelectChange}
+                            options={options}
+                            placeholder="Seleccionar"
+                            isClearable
+                        />
                     </div>
                 </div>
 

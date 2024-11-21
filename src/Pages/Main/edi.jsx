@@ -7,9 +7,7 @@ import './MyCalendar.css';
 import EdiCreate from './ediCreate'; 
 
 const EDI = () => {
-
     const navigate = useNavigate();
-
     const [selectedOption, setSelectedOption] = useState('kanban');
     const [titles, setTitles] = useState([]); 
     const [date, setDate] = useState(new Date()); 
