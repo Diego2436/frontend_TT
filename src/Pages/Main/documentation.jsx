@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import manual from '../../Documents/ManualUsuario.pdf'
 
 const Documentation = () => {
 
@@ -28,10 +29,12 @@ const Documentation = () => {
                     Información para la beca EDI
                 </a>
                 
-                <a 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="btn btn-danger ms-2 mb-3"  // Agregado mb-3 para margen inferior
+                <a
+                    href={manual} // Agregamos el enlace al archivo PDF
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download="ManualUsuario.pdf" // Especifica que se descargue con este nombre
+                    className="btn btn-danger ms-2 mb-3" // Estilos de la clase
                 >
                     Descargar manual de usuario
                 </a>
