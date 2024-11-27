@@ -180,6 +180,7 @@ const EddDetails = () => {
             // Actualiza el estado con el nuevo archivo subido
             setFiles([...files, response.data.file]);
             alert('Archivo subido correctamente.');
+            window.location.reload();
         } catch (error) {
             console.error('Error uploading file:', error);
             alert('Hubo un error al subir el archivo.');

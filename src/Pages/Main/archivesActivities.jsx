@@ -104,6 +104,7 @@ const ArchivesActivities = () => {
             // Actualiza el estado con el nuevo archivo subido
             setFiles([...files, response.data.file]);
             alert('Archivo subido correctamente.');
+            window.location.reload();
         } catch (error) {
             console.error('Error uploading file:', error);
             alert('Hubo un error al subir el archivo.');
@@ -114,23 +115,18 @@ const ArchivesActivities = () => {
         }
     }; 
     
-    const getStatusColor = (status) => {
+    const getStatusBadge = (status) => {
         switch (status) {
-            case "completada": return "text-success"; // Verde
-            case "errores": return "text-danger";     // Rojo
-            case "precaucion": return "text-warning"; // Amarillo
-            default: return "text-secondary";        // Gris para null u otros
+            case "completada":
+                return <span className="badge bg-success">Completa</span>; // Verde
+            case "errores":
+                return <span className="badge bg-danger">Contiene Errores</span>; // Rojo
+            case "precaucion":
+                return <span className="badge bg-warning text-dark">Correcciones</span>; // Amarillo con texto oscuro para contraste
+            default:
+                return <span className="badge bg-secondary">Sin estado</span>; // Gris para otros casos
         }
-    };
-    
-    const getStatusText = (status) => {
-        switch (status) {
-            case "completada": return "Completa";
-            case "errores": return "Contiene Errores";
-            case "precaucion": return "Correcciones";
-            default: return "Sin estado";
-        }
-    };    
+    };        
     
     if (loading) {
         return <p>Cargando archivos...</p>;
@@ -147,8 +143,8 @@ const ArchivesActivities = () => {
                                 <div className="card-body">
                                     {/* Espacio debajo del nombre del archivo */}
                                     <h5 className="card-title mb-3">{file.name}</h5>
-                                    <p className={`mb-3 ${getStatusColor(file.file_status)}`}>
-                                        {getStatusText(file.file_status)}
+                                    <p className="mb-3 text-center">
+                                        {getStatusBadge(file.file_status)}
                                     </p>
                                     <button
                                         className="btn btn-primary w-100 mb-3"
